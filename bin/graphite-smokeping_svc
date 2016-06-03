@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+#!/usr/bin/ruby2.0
 # daemon control for graphite-smokeping
 
 require 'daemons'
@@ -14,12 +14,13 @@ end
 if ARGV.length == 3
   arg = ARGV[2]
   cwd = Dir.pwd
-  script = cwd + '/graphite-smokeping ' + arg
+  #Assume start from base dir of git checkout
+  script = cwd + '/bin/graphite-smokeping ' + arg
 end
 
 Daemons.run_proc(
   'graphite-smokeping',
   ) do
  Dir.chdir(cwd)
- exec "ruby #{script}"
+ exec "/usr/bin/ruby2.0 #{script}"
 end 

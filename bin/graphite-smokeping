@@ -13,7 +13,7 @@ end
 
 gr_source = Socket::gethostname.gsub(".", "-")
 gr_server = ARGV[0]
-gr_path = gr_source + ".network.ping.latency"
+gr_path = "network.ping.latency_from." + gr_source
 
 loop do
   File.open("smokeping_hosts", "r") do |hosts_f|
